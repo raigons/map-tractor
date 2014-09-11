@@ -8,6 +8,8 @@
         coordinates = [-21.25404, -44.99003];
 
     api.loadMap = function(){
+      setImagePath();
+
       var map = L.map('map').setView(coordinates, 17);      
 
       L.tileLayer(mapboxURL, {
@@ -17,8 +19,12 @@
       loadMarkers(map);
     };
 
+    var setImagePath = function(){
+      if (!L.Icon.Default.imagePath) L.Icon.Default.imagePath = '/images/leaflet';
+    };
+
     var loadMarkers = function(map){
-      marker = L.marker(coordinates).addTo(map);
+      var marker = L.marker(coordinates).addTo(map);
     };
 
     return api;
