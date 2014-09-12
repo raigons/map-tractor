@@ -20,7 +20,7 @@
     };
 
     var setImagePath = function(){
-      if (!L.Icon.Default.imagePath) L.Icon.Default.imagePath = '/images/leaflet';
+      if (!L.Icon.Default.imagePath) L.Icon.Default.imagePath = 'images/leaflet';
     };
 
     var loadMarkers = function(map){
