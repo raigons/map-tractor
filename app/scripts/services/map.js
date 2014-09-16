@@ -1,36 +1,36 @@
-;
-(function(){
+(function(L){
   'use strict';
 
-  var Map = function(){
+  var Map = function(markerSetter){
     var api         = {},
-        mapboxURL   = 'http://{s}.tiles.mapbox.com/v3/raigons.jc668djc/{z}/{x}/{y}.png',
-        coordinates = [-21.25404, -44.99003];
+        map;
 
-    api.loadMap = function(){
+    api.loadMap = function(user){
       setImagePath();
 
-      var map = L.map('map').setView(coordinates, 17);      
+      map = L.map('map').setView(user.centerCoordinates, user.initialZoom || 16);
 
-      L.tileLayer(mapboxURL, {
-        maxZoom: 25
+      L.tileLayer(user.mapServiceUrl, {
+        maxZoom: user.maxZoom
       }).addTo(map);
+    };
 
-      loadMarkers(map);
+    api.loadVehicles = function(vehicles){
+      markerSetter.addMarkerFromGeoJSON(map, vehicles);
+    };
+
+    api.mapLayer = function(){
+      return map;
     };
 
     var setImagePath = function(){
-      if (!L.Icon.Default.imagePath) L.Icon.Default.imagePath = 'images/leaflet';
-    };
-
-    var loadMarkers = function(map){
-      var marker = L.marker(coordinates).addTo(map);
+      if (!L.Icon.Default.imagePath) { L.Icon.Default.imagePath = 'images/leaflet'; }
     };
 
     return api;
   };
 
-  angular.module("mapTractorApp.map", []).factory("Map", Map);
-})();
+  angular.module('mapTractorApp').factory('Map', ['MarkerSetter', Map]);
+})(window.L);
 
 

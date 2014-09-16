@@ -13,5 +13,6 @@ angular
     'ngAnimate',
     'ngSanitize',
     'ngTouch',
-    'mapTractorApp.map'
+    'ngResource',
+    'mapTractorApp.Directives'
   ]);
