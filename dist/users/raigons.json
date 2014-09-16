@@ -1,0 +1,6 @@
+{
+  "centerCoordinates": [-21.25404, -44.99003],
+  "mapServiceUrl": "http://{s}.tiles.mapbox.com/v3/raigons.jc668djc/{z}/{x}/{y}.png",
+  "maxZoom": 18,
+  "initialZoom": 16
+}
